@@ -23,7 +23,10 @@
             </i18n-t>
           </li>
           <li>
-            {{ $t('summary.step1b2') }} <a href="#faq">(?)</a> <code>JSON.parse(localStorage.getItem("profile")).auth.key</code>
+            {{ $t('summary.step1b2') }} <a href="#faq">(?)</a>
+            <div class="code-container">
+              <code>JSON.parse(localStorage.getItem("profile")).auth.key</code>
+            </div>
           </li>
           <li>{{ $t('summary.step1b3') }}</li>
         </ul>
@@ -36,3 +39,27 @@
     </ol>
   </section>
 </template>
+
+<style scoped>
+.code-container {
+    overflow-x: auto;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+code {
+    white-space: nowrap;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #b93334;
+}
+
+@media (max-width: 600px) {
+    .code-container {
+        padding: 5px;
+    }
+    code {
+        font-size: 0.8em;
+    }
+}
+</style>

@@ -23,8 +23,20 @@ export const messages = {
       step3: "Re-order your addons as you like.",
       step4: "Click the 'Sync To Stremio' button to sync the changes back to your profile."
     },
+    addon: {
+      openConfig: "Open addon configuration page in new window",
+      copyUrl: "Copy addon manifest URL to clipboard",
+      remove: "Remove addon from list",
+      editManifest: "Edit manifest JSON"
+    },
     config: {
-      title: "Configure",
+      title: "Configuration",
+      step1: "Step 1: Load",
+      loading: "Loading...",
+      loadAddons: "Load User Addons",
+      step2: "Step 2: Reorder",
+      step3: "Step 3: Sync",
+      syncToStremio: "Sync to Stremio",
       step0: "Step 0: Authenticate",
       emailPlaceholder: "Stremio E-mail",
       passwordPlaceholder: "Stremio Password",
@@ -32,17 +44,19 @@ export const messages = {
       loggedIn: "Logged in",
       or: "OR",
       authKeyPlaceholder: "Paste Stremio AuthKey here...",
-      step1: "Step 1: Load Addons",
-      loadAddons: "Load Addons",
-      loading: "Loading...",
-      step2: "Step 2: Re-Order Addons",
-      step3: "Step 3: Sync Addons",
-      syncToStremio: "Sync to Stremio"
+      editManifest: "Edit manifest"
     },
-    addon: {
-      openConfig: "Open addon configuration page in new window",
-      copyUrl: "Copy addon manifest URL to clipboard",
-      remove: "Remove addon from list"
+    dynamicForm: {
+      name: "Name",
+      description: "Description",
+      logo: "Logo URL",
+      background: "Background URL",
+      catalogs: "Catalogs",
+      catalogName: "Catalog Name",
+      save: "Save",
+      advancedMode: "Advanced mode",
+      classicMode: "Classic mode",
+      invalidJson: "Invalid JSON format"
     },
     thanks: {
       title: "Thank you",
@@ -90,26 +104,40 @@ export const messages = {
       step3: "أعد ترتيب الإضافات كما يحلو لك.",
       step4: "انقر على زر 'المزامنة مع Stremio' لحفظ التغييرات في ملفك الشخصي."
     },
+    addon: {
+      openConfig: "افتح صفحة إعدادات الإضافة في نافذة جديدة",
+      copyUrl: "انسخ رابط الإضافة",
+      remove: "احذف الإضافة من القائمة",
+      editManifest: "تعديل بيانات الإضافة (JSON)"
+    },
     config: {
       title: "الإعدادات",
-      step0: "الخطوة 0: المصادقة",
-      emailPlaceholder: "البريد الإلكتروني لـ Stremio",
-      passwordPlaceholder: "كلمة مرور Stremio",
+      step1: "الخطوة الأولى: جلب الإضافات",
+      loading: "جارٍ التحميل...",
+      loadAddons: "استعرض إضافاتك الحالية",
+      step2: "الخطوة الثانية: إعادة الترتيب",
+      step3: "الخطوة الثالثة: المزامنة",
+      syncToStremio: "زامن التعديلات مع Stremio",
+      step0: "الخطوة التمهيدية: تسجيل الدخول",
+      emailPlaceholder: "البريد الإلكتروني (Stremio)",
+      passwordPlaceholder: "كلمة المرور (Stremio)",
       login: "تسجيل الدخول",
       loggedIn: "تم تسجيل الدخول",
       or: "أو",
-      authKeyPlaceholder: "الصق مفتاح Stremio (AuthKey) هنا...",
-      step1: "الخطوة 1: تحميل الإضافات",
-      loadAddons: "تحميل الإضافات",
-      loading: "جاري التحميل...",
-      step2: "الخطوة 2: إعادة ترتيب الإضافات",
-      step3: "الخطوة 3: مزامنة الإضافات",
-      syncToStremio: "المزامنة مع Stremio"
+      authKeyPlaceholder: "ضع رمز Stremio AuthKey هنا...",
+      editManifest: "تعديل المانيفست (بيانات الإضافة)"
     },
-    addon: {
-      openConfig: "فتح صفحة إعدادات الإضافة في نافذة جديدة",
-      copyUrl: "نسخ رابط الإضافة إلى الحافظة",
-      remove: "إزالة الإضافة من القائمة"
+    dynamicForm: {
+      name: "الاسم",
+      description: "الوصف",
+      logo: "رابط اللوجو (الشعار)",
+      background: "رابط صورة الخلفية",
+      catalogs: "الفهارس (Catalogs)",
+      catalogName: "اسم الفهرس",
+      save: "حفظ",
+      advancedMode: "الوضع المتقدم",
+      classicMode: "الوضع الكلاسيكي",
+      invalidJson: "تنسيق JSON غير صالح"
     },
     thanks: {
       title: "شكر خاص",

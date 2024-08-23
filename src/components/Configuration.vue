@@ -4,6 +4,7 @@ import draggable from 'vuedraggable'
 import AddonItem from './AddonItem.vue'
 import Authentication from './Authentication.vue'
 import { useI18n } from 'vue-i18n'
+import DynamicForm from './DynamicForm.vue'
 
 const stremioAPIBase = "https://api.strem.io/api/"
 const dragging = false
@@ -12,6 +13,10 @@ let addons = ref([])
 
 const { t } = useI18n()
 let loadAddonsButtonText = ref(t('config.loadAddons'))
+
+let isEditModalVisible = ref(false);
+let currentManifest = ref({});
+let currentEditIdx = ref(null);
 
 function loadUserAddons() {
     const key = stremioAuthKey.value
@@ -100,7 +105,28 @@ function setAuthKey(authKey) {
     console.log('AuthKey set to: ', stremioAuthKey.value)
 }
 
+function openEditModal(idx) {
+    isEditModalVisible.value = true;
+    currentEditIdx.value = idx;
+    currentManifest.value = { ...addons.value[idx].manifest };
+    document.body.classList.add('modal-open');
+}
 
+function closeEditModal() {
+    isEditModalVisible.value = false;
+    currentManifest.value = {};
+    currentEditIdx.value = null;
+    document.body.classList.remove('modal-open');
+}
+
+function saveManifestEdit(updatedManifest) {
+    try {
+        addons.value[currentEditIdx.value].manifest = updatedManifest;
+        closeEditModal();
+    } catch (e) {
+        alert('Failed to update manifest');
+    }
+}
 </script>
 
 <template>
@@ -125,7 +151,8 @@ function setAuthKey(authKey) {
                             :logoURL="element.manifest.logo"
                             :isDeletable="!getNestedObjectProperty(element, 'flags.protected', false)"
                             :isConfigurable="getNestedObjectProperty(element, 'manifest.behaviorHints.configurable', false)"
-                            @delete-addon="removeAddon" />
+                            @delete-addon="removeAddon"
+                            @edit-manifest="openEditModal" />
                     </template>
                 </draggable>
             </fieldset>
@@ -136,12 +163,17 @@ function setAuthKey(authKey) {
                 </button>
             </fieldset>
         </form>
-
     </section>
+
+    <div v-if="isEditModalVisible" class="modal" @click.self="closeEditModal">
+        <div class="modal-content">
+            <h3>{{ $t('config.editManifest') }}</h3>
+            <DynamicForm :manifest="currentManifest" @update-manifest="saveManifestEdit" />
+        </div>
+    </div>
 </template>
 
 <style scoped>
-/* sortable list/addon list specifics */
 .sortable-list {
     padding: 25px;
     border-radius: 7px;
@@ -155,5 +187,43 @@ function setAuthKey(authKey) {
 
 .item.dragging :where(.details, i) {
     opacity: 0;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.modal-content {
+    background: #2e2e2e; 
+    color: #e0e0e0; 
+    width: 75vw;
+    max-width: 900px;
+    max-height: 90vh;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ffa600;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 </style>
