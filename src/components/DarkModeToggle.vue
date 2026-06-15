@@ -41,7 +41,48 @@ onMounted(() => {
 </script>
 
 <template>
-    <h1 class="pull-right" style="margin: 0;">
-        <a @click="toggleMode">{{ toggleIcon }}</a>
-    </h1>
+    <div class="theme-toggle">
+        <button class="icon-button" @click="toggleMode" :title="darkEnabled ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+            <span class="icon">{{ toggleIcon }}</span>
+        </button>
+    </div>
 </template>
+
+<style scoped>
+.theme-toggle {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem; /* For RTL it will be on the left */
+    z-index: 100;
+}
+
+html[dir="ltr"] .theme-toggle {
+    left: auto;
+    right: 1.5rem;
+}
+
+.icon-button {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.icon-button:hover {
+    transform: rotate(15deg) scale(1.1);
+    background: var(--card-bg-hover);
+    border-color: var(--primary);
+}
+
+.icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+</style>

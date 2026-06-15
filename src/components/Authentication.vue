@@ -49,18 +49,23 @@ function emitAuthKey() {
 </script>
 
 <template>
-    <div class="flex-col gap-4">
-        <div class="flex gap-2">
+    <div class="flex-col gap-4" style="margin-top: 1rem;">
+        <div class="flex-col gap-2">
+            <label style="font-size: 0.9rem">{{ $t('config.emailPlaceholder') }}</label>
             <input type="text" v-model="email" :placeholder="$t('config.emailPlaceholder')">
+            <label style="font-size: 0.9rem; margin-top: 0.5rem">{{ $t('config.passwordPlaceholder') }}</label>
             <input type="password" v-model="password" :placeholder="$t('config.passwordPlaceholder')">
-            <button class="button" @click="loginUserPassword">
+            <button class="button" @click="loginUserPassword" style="margin-top: 1rem;">
                 {{ loginButtonText }}
             </button>
         </div>
-        <div class="text-center">
-            <strong style="color: var(--text-secondary)">{{ $t('config.or') }}</strong>
+        
+        <div class="text-center" style="margin: 1.5rem 0;">
+            <strong style="color: var(--text-secondary); background: var(--card-bg); padding: 0 10px;">{{ $t('config.or') }}</strong>
         </div>
-        <div class="flex">
+
+        <div class="flex-col gap-2">
+            <label style="font-size: 0.9rem">Stremio AuthKey</label>
             <input type="password" v-model="authKey" @input="emitAuthKey" :placeholder="$t('config.authKeyPlaceholder')">
         </div>
     </div>

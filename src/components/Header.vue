@@ -20,30 +20,48 @@ defineProps({
 </script>
 
 <template>
-  <div class="hero">
-    <div class="logo is-center is-vertical-align">
-      <img v-if="addonLogo" :src="addonLogo" alt="Addon logo" />
-      <h1 v-else>{{ addonName }}</h1>
-      <h3>{{ addonSummary }}</h3>
-      <small><em>{{ addonTagline }}</em></small>
+  <header>
+    <div class="logo-container">
+      <h1 class="gradient-text">{{ addonName }}</h1>
+      <p class="summary">{{ addonSummary }}</p>
+      <span class="tagline">{{ addonTagline }}</span>
     </div>
-  </div>
+  </header>
 </template>
 
 <style scoped>
-.logo {
-  flex: 1;
-  flex-direction: column;
-  margin-top: 10%;
-}
-
-.logo svg {
-  width: 100%;
-  max-width: 300px;
-}
-
-.logo h3 {
-  font-weight: 300;
+header {
   text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gradient-text {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.summary {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 0.5rem auto;
+}
+
+.tagline {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .gradient-text {
+    font-size: 2.2rem;
+  }
 }
 </style>
