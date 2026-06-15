@@ -11,7 +11,9 @@ const props = defineProps({
 const authKey = ref('')
 const email = ref('')
 const password = ref('')
-const loginButtonText = ref('Login')
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+const loginButtonText = ref(t('config.login'))
 const emits = defineEmits(['auth-key'])
 
 async function loginUserPassword() {
@@ -30,7 +32,7 @@ async function loginUserPassword() {
             resp.json().then((data) => {
                 console.log("Auth data:" + data)
                 authKey.value = data.result.authKey
-                loginButtonText.value = 'Logged in'
+                loginButtonText.value = t('config.loggedIn')
                 emitAuthKey()
             })
         })
@@ -47,19 +49,19 @@ function emitAuthKey() {
 </script>
 
 <template>
-    <legend>Step 0: Authenticate</legend>
+    <legend>{{ $t('config.step0') }}</legend>
     <p class="grouped">
-        <input type="text" v-model="email" placeholder="Stremio E-mail">
-        <input type="password" v-model="password" placeholder="Stremio Password">
+        <input type="text" v-model="email" :placeholder="$t('config.emailPlaceholder')">
+        <input type="password" v-model="password" :placeholder="$t('config.passwordPlaceholder')">
         <button class="button primary" @click="loginUserPassword">
-            Login
+            {{ loginButtonText }}
         </button>
     </p>
     <p>
-        <strong>OR</strong>
+        <strong>{{ $t('config.or') }}</strong>
     </p>
     <p class="grouped">
-        <input type="password" v-model="authKey" v-on:input="emitAuthKey" placeholder="Paste Stremio AuthKey here...">
+        <input type="password" v-model="authKey" v-on:input="emitAuthKey" :placeholder="$t('config.authKeyPlaceholder')">
     </p>
 </template>
 

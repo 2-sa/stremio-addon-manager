@@ -3,8 +3,8 @@
 
 <template>
   <div class="is-horizontal-align footer">
-    <p>Made with ❤️, 🤖 and 🥞's - enjoy!</p>
-    <a href="https://github.com/pancake3000/stremio-addon-manager" target="_blank">Source Code</a>
+    <p>{{ $t('footer.madeWith') }}</p>
+    <a href="https://github.com/pancake3000/stremio-addon-manager" target="_blank">{{ $t('footer.sourceCode') }}</a>
   </div>
 </template>
 

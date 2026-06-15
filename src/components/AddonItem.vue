@@ -65,15 +65,15 @@ function removeAddon() {
       </div>
     </div>
     <div class="col">
-      <button class="button icon-only visit-url" title="Open addon configuration page in new window"
+      <button class="button icon-only visit-url" :title="$t('addon.openConfig')"
         :disabled="!isConfigurable" @click="openAddonConfigurationPage">
         <img src="https://icongr.am/feather/arrow-up-right.svg?size=12">
       </button>
-      <button class="button icon-only copy-url" title="Copy addon manifest URL to clipboard"
+      <button class="button icon-only copy-url" :title="$t('addon.copyUrl')"
         @click="copyManifestURLToClipboard">
         <img src="https://icongr.am/feather/clipboard.svg?size=12">
       </button>
-      <button class="button icon-only delete" title="Remove addon from list" :disabled="!isDeletable"
+      <button class="button icon-only delete" :title="$t('addon.remove')" :disabled="!isDeletable"
         @click="removeAddon">
         <img src="https://icongr.am/feather/trash-2.svg?size=12">
       </button>

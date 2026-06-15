@@ -3,12 +3,15 @@ import { ref } from 'vue'
 import draggable from 'vuedraggable'
 import AddonItem from './AddonItem.vue'
 import Authentication from './Authentication.vue'
+import { useI18n } from 'vue-i18n'
 
 const stremioAPIBase = "https://api.strem.io/api/"
 const dragging = false
 let stremioAuthKey = ref('');
 let addons = ref([])
-let loadAddonsButtonText = ref('Load Addons')
+
+const { t } = useI18n()
+let loadAddonsButtonText = ref(t('config.loadAddons'))
 
 function loadUserAddons() {
     const key = stremioAuthKey.value
@@ -17,7 +20,7 @@ function loadUserAddons() {
         return
     }
 
-    loadAddonsButtonText.value = 'Loading...'
+    loadAddonsButtonText.value = t('config.loading')
     console.log('Loading addons...')
 
     const url = `${stremioAPIBase}addonCollectionGet`
@@ -41,7 +44,7 @@ function loadUserAddons() {
     }).catch((error) => {
         console.error('Error fetching user addons', error)
     }).finally(() => {
-        loadAddonsButtonText.value = 'Load Addons'
+        loadAddonsButtonText.value = t('config.loadAddons')
     })
 }
 
@@ -102,19 +105,19 @@ function setAuthKey(authKey) {
 
 <template>
     <section id="configure">
-        <h2>Configure</h2>
+        <h2>{{ $t('config.title') }}</h2>
         <form onsubmit="return false;">
             <fieldset>
                 <Authentication :stremioAPIBase="stremioAPIBase" @auth-key="setAuthKey" />
             </fieldset>
             <fieldset id="form_step1">
-                <legend>Step 1: Load Addons</legend>
+                <legend>{{ $t('config.step1') }}</legend>
                 <button class="button primary" @click="loadUserAddons">
                     {{ loadAddonsButtonText }}
                 </button>
             </fieldset>
             <fieldset id="form_step2">
-                <legend>Step 2: Re-Order Addons</legend>
+                <legend>{{ $t('config.step2') }}</legend>
                 <draggable :list="addons" item-key="transportUrl" class="sortable-list" ghost-class="ghost"
                     @start="dragging = true" @end="dragging = false">
                     <template #item="{ element, index }">
@@ -127,8 +130,8 @@ function setAuthKey(authKey) {
                 </draggable>
             </fieldset>
             <fieldset id="form_step3">
-                <legend>Step 3: Sync Addons</legend>
-                <button type="button" class="button primary icon" @click="syncUserAddons">Sync to Stremio
+                <legend>{{ $t('config.step3') }}</legend>
+                <button type="button" class="button primary icon" @click="syncUserAddons">{{ $t('config.syncToStremio') }}
                     <img src="https://icongr.am/feather/loader.svg?size=16&amp;color=ffffff" alt="icon">
                 </button>
             </fieldset>
