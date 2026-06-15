@@ -49,54 +49,19 @@ function emitAuthKey() {
 </script>
 
 <template>
-    <legend>{{ $t('config.step0') }}</legend>
-    <p class="grouped">
-        <input type="text" v-model="email" :placeholder="$t('config.emailPlaceholder')">
-        <input type="password" v-model="password" :placeholder="$t('config.passwordPlaceholder')">
-        <button class="button primary" @click="loginUserPassword">
-            {{ loginButtonText }}
-        </button>
-    </p>
-    <p>
-        <strong>{{ $t('config.or') }}</strong>
-    </p>
-    <p class="grouped">
-        <input type="password" v-model="authKey" v-on:input="emitAuthKey" :placeholder="$t('config.authKeyPlaceholder')">
-    </p>
+    <div class="flex-col gap-4">
+        <div class="flex gap-2">
+            <input type="text" v-model="email" :placeholder="$t('config.emailPlaceholder')">
+            <input type="password" v-model="password" :placeholder="$t('config.passwordPlaceholder')">
+            <button class="button" @click="loginUserPassword">
+                {{ loginButtonText }}
+            </button>
+        </div>
+        <div class="text-center">
+            <strong style="color: var(--text-secondary)">{{ $t('config.or') }}</strong>
+        </div>
+        <div class="flex">
+            <input type="password" v-model="authKey" @input="emitAuthKey" :placeholder="$t('config.authKeyPlaceholder')">
+        </div>
+    </div>
 </template>
-
-<style scoped>
-.sortable-list .item {
-    list-style: none;
-    display: flex;
-    cursor: move;
-    align-items: center;
-    border-radius: 5px;
-    padding: 10px 13px;
-    margin-bottom: 11px;
-    /* box-shadow: 0 2px 4px rgba(0,0,0,0.06); */
-    border: 1px solid #ccc;
-    justify-content: space-between;
-}
-
-.dark .sortable-list .item {
-    border: 1px solid #434242;
-}
-
-.item .details {
-    display: flex;
-    align-items: center;
-}
-
-.item .details img {
-    height: 60px;
-    width: 60px;
-    pointer-events: none;
-    margin-right: 12px;
-    object-fit: contain;
-    object-position: center;
-    border-radius: 30%;
-    background-color: #262626;
-
-}
-</style>

@@ -131,19 +131,19 @@ function saveManifestEdit(updatedManifest) {
 
 <template>
     <section id="configure">
-        <h2>{{ $t('config.title') }}</h2>
-        <form onsubmit="return false;">
-            <fieldset>
+        <form onsubmit="return false;" class="flex-col gap-4">
+            <div class="card">
+                <h3>{{ $t('config.step0') }}</h3>
                 <Authentication :stremioAPIBase="stremioAPIBase" @auth-key="setAuthKey" />
-            </fieldset>
-            <fieldset id="form_step1">
-                <legend>{{ $t('config.step1') }}</legend>
-                <button class="button primary" @click="loadUserAddons">
+            </div>
+            <div class="card" id="form_step1">
+                <h3>{{ $t('config.step1') }}</h3>
+                <button class="button" @click="loadUserAddons">
                     {{ loadAddonsButtonText }}
                 </button>
-            </fieldset>
-            <fieldset id="form_step2">
-                <legend>{{ $t('config.step2') }}</legend>
+            </div>
+            <div class="card" id="form_step2">
+                <h3>{{ $t('config.step2') }}</h3>
                 <draggable :list="addons" item-key="transportUrl" class="sortable-list" ghost-class="ghost"
                     @start="dragging = true" @end="dragging = false">
                     <template #item="{ element, index }">
@@ -155,19 +155,19 @@ function saveManifestEdit(updatedManifest) {
                             @edit-manifest="openEditModal" />
                     </template>
                 </draggable>
-            </fieldset>
-            <fieldset id="form_step3">
-                <legend>{{ $t('config.step3') }}</legend>
-                <button type="button" class="button primary icon" @click="syncUserAddons">{{ $t('config.syncToStremio') }}
-                    <img src="https://icongr.am/feather/loader.svg?size=16&amp;color=ffffff" alt="icon">
+            </div>
+            <div class="card" id="form_step3">
+                <h3>{{ $t('config.step3') }}</h3>
+                <button type="button" class="button" @click="syncUserAddons">
+                    {{ $t('config.syncToStremio') }}
                 </button>
-            </fieldset>
+            </div>
         </form>
     </section>
 
     <div v-if="isEditModalVisible" class="modal" @click.self="closeEditModal">
         <div class="modal-content">
-            <h3>{{ $t('config.editManifest') }}</h3>
+            <h3 style="margin-bottom: 1.5rem">{{ $t('config.editManifest') }}</h3>
             <DynamicForm :manifest="currentManifest" @update-manifest="saveManifestEdit" />
         </div>
     </div>
@@ -175,10 +175,13 @@ function saveManifestEdit(updatedManifest) {
 
 <style scoped>
 .sortable-list {
-    padding: 25px;
-    border-radius: 7px;
-    padding: 30px 25px 20px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    min-height: 100px;
+}
+
+.ghost {
+    opacity: 0.5;
+    background: var(--card-bg-hover);
 }
 
 .item.dragging {
@@ -187,43 +190,5 @@ function saveManifestEdit(updatedManifest) {
 
 .item.dragging :where(.details, i) {
     opacity: 0;
-}
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
-}
-
-.modal-content {
-    background: #2e2e2e; 
-    color: #e0e0e0; 
-    width: 75vw;
-    max-width: 900px;
-    max-height: 90vh;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #ffa600;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 </style>
