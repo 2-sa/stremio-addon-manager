@@ -78,12 +78,15 @@ html {
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Noto Sans Arabic', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 body.modal-open {
@@ -189,7 +192,7 @@ a:hover {
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-md);
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Noto Sans Arabic', sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
@@ -311,7 +314,7 @@ input, select, textarea {
   color: var(--text-primary);
   padding: 0.85rem 1rem;
   border-radius: var(--radius-md);
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Noto Sans Arabic', sans-serif;
   font-size: 0.95rem;
   transition: var(--transition);
   outline: none;
