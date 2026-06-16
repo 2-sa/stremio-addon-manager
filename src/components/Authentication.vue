@@ -51,8 +51,10 @@ function emitAuthKey() {
         <span>{{ $t('config.emailPlaceholder') }}</span>
       </div>
       <div class="auth-fields">
-        <input type="text" v-model="email" :placeholder="$t('config.emailPlaceholder')" />
-        <input type="password" v-model="password" :placeholder="$t('config.passwordPlaceholder')" />
+        <div class="row-fields">
+          <input type="text" v-model="email" :placeholder="$t('config.emailPlaceholder')" />
+          <input type="password" v-model="password" :placeholder="$t('config.passwordPlaceholder')" />
+        </div>
         <button class="button primary" @click="loginUserPassword" :disabled="isLoggingIn">
           <span v-if="isLoggingIn" class="spinner"></span>
           {{ loginButtonText }}
@@ -112,6 +114,16 @@ function emitAuthKey() {
   gap: 0.625rem;
 }
 
+.row-fields {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.row-fields input {
+  flex: 1;
+  min-width: 0;
+}
+
 .divider {
   display: flex;
   align-items: center;
@@ -129,5 +141,11 @@ function emitAuthKey() {
   flex: 1;
   height: 1px;
   background: var(--border-color);
+}
+
+@media (max-width: 480px) {
+  .row-fields {
+    flex-direction: column;
+  }
 }
 </style>
