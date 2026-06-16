@@ -84,7 +84,7 @@ export const messages = {
   },
   ar: {
     app: {
-      name: "مدير إضافات Stremio",
+      name: "مدير إضافات ستريميو",
       summary: "أدر ترتيب إضافات Stremio الخاصة بك بسهولة وبدون الحاجة لإعادة التثبيت.",
       tagline: "بما في ذلك فهارس Cinemeta الافتراضية."
     },
