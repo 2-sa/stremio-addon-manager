@@ -34,6 +34,9 @@ body { background-image: none; }
 .app-layout .version-badge { font-size: .75rem; letter-spacing: .04em; border: 0; border-radius: 5px; }
 .app-layout .brand-icon { filter: none; }
 .app-layout .brand-icon svg { width: 34px; height: 34px; }
+.app-layout .navbar button.lang-btn,.app-layout .navbar button.share-button { padding: .5rem .75rem; min-height: 44px; font-size: .875rem; }
+.app-layout .navbar button.theme-btn { width: 44px; height: 44px; min-width: 44px; padding: 0; }
+.app-layout .navbar button svg { flex-shrink: 0; }
 .workspace-heading { padding: 2.5rem 0 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
 .eyebrow { display: block; font-size: .75rem; letter-spacing: .14em; font-weight: 600; color: var(--accent-1); margin: 0 0 .7rem; }
 .workspace-heading h1 { font-size: clamp(1.65rem,3vw,2.35rem); letter-spacing: -.045em; font-weight: 700; margin-bottom: .6rem; }
@@ -128,7 +131,9 @@ body { background-image: none; }
 @media (max-width: 760px) {
   #app { padding: 0 1rem 1rem; }
   .workspace-grid { grid-template-columns: minmax(0,1fr); }
-  .workspace-heading { padding: 1.75rem 0; }
+  .workspace-heading { padding: 1.25rem 0; }
+  .workspace-heading h1 { font-size: 1.65rem; line-height: 1.5; }
+  .workspace-heading .eyebrow { font-size: .75rem; letter-spacing: .08em; margin-bottom: .45rem; }
   .app-layout .card { padding: 1.2rem; }
   .app-layout .navbar { flex-direction: row; flex-wrap: wrap; gap: .75rem; }
   .app-layout .nav-brand,.app-layout .nav-actions { width: auto; }
@@ -136,7 +141,12 @@ body { background-image: none; }
   .app-layout .brand-title { font-size: .875rem; }
   .app-layout .tabs-header { flex-direction: row; }
   .app-layout .tab-btn { white-space: normal; }
-  .app-layout .step-line { min-width: 8px; }
+  .app-layout .stepper-bar { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); align-items: start; gap: .5rem; padding: .85rem .5rem; }
+  .app-layout .step-item { min-width: 0; flex-direction: column; align-items: center; gap: .35rem; }
+  .app-layout .step-label { font-size: .875rem; line-height: 1.5; white-space: normal; }
+  .app-layout .step-line { display: none; }
+  .app-layout .step-card-header h3 { font-size: 1rem; line-height: 1.6; }
+  .app-layout .nav-actions { gap: .5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

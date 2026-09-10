@@ -184,7 +184,7 @@ function saveManifestEdit(updatedManifest) {
           </svg>
           <span v-else>1</span>
         </div>
-        <span class="step-label">{{ $t('config.step0') }}</span>
+        <span class="step-label">{{ $i18n.locale === 'ar' ? 'الدخول' : 'Connect' }}</span>
       </div>
 
       <div class="step-line" :class="{ 'completed': stremioAuthKey }"></div>
@@ -196,7 +196,7 @@ function saveManifestEdit(updatedManifest) {
           </svg>
           <span v-else>2</span>
         </div>
-        <span class="step-label">{{ $t('config.step1') }}</span>
+        <span class="step-label">{{ $i18n.locale === 'ar' ? 'الإضافات' : 'Load' }}</span>
       </div>
 
       <div class="step-line" :class="{ 'completed': addons.length > 0 }"></div>
@@ -205,7 +205,7 @@ function saveManifestEdit(updatedManifest) {
         <div class="step-circle">
           <span>3</span>
         </div>
-        <span class="step-label">{{ $t('config.step2') }} & {{ $t('config.step3') }}</span>
+        <span class="step-label">{{ $i18n.locale === 'ar' ? 'ترتيب وحفظ' : 'Arrange & sync' }}</span>
       </div>
     </div>
 
