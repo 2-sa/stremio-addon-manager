@@ -131,14 +131,14 @@ function copyConsoleSnippet() {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
               </svg>
-              <input type="text" v-model="email" :placeholder="$t('config.emailPlaceholder')" />
+              <input type="email" autocomplete="username" v-model="email" :aria-label="$t('config.emailPlaceholder')" :placeholder="$t('config.emailPlaceholder')" />
             </div>
 
             <div class="input-with-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
-              <input type="password" v-model="password" :placeholder="$t('config.passwordPlaceholder')" />
+              <input type="password" autocomplete="current-password" v-model="password" :aria-label="$t('config.passwordPlaceholder')" :placeholder="$t('config.passwordPlaceholder')" @keydown.enter="!isLoggingIn && email && password && loginUserPassword()" />
             </div>
           </div>
 
@@ -156,7 +156,7 @@ function copyConsoleSnippet() {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
             </svg>
-            <input type="password" v-model="authKey" @input="handleAuthKeyInput" :placeholder="$t('config.authKeyPlaceholder')" />
+            <input type="password" autocomplete="off" v-model="authKey" @input="handleAuthKeyInput" :aria-label="$t('config.authKeyPlaceholder')" :placeholder="$t('config.authKeyPlaceholder')" />
           </div>
 
           <!-- Helper Trigger -->

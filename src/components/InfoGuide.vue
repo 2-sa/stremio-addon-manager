@@ -22,7 +22,7 @@ function toggleGuide() {
           <span class="guide-subtitle">{{ $t('summary.whyText2') }}</span>
         </div>
       </div>
-      <button class="expand-btn" :aria-expanded="isExpanded">
+      <button class="expand-btn" :aria-label="$t('summary.how')" :aria-expanded="isExpanded" @click.stop="toggleGuide">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :class="{ 'rotate': isExpanded }">
           <polyline points="6 9 12 15 18 9"/>
         </svg>

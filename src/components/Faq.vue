@@ -44,8 +44,8 @@ function toggleAccordion(idx) {
         </svg>
       </div>
       <div>
-        <h3>الأسئلة الشائعة Frequently Asked Questions</h3>
-        <p class="faq-subtitle">إجابات سريعة ومباشرة لأكثر الأسئلة تكراراً حول إدارة ومزامنة إضافات Stremio.</p>
+        <h3>{{ $i18n.locale === 'ar' ? 'الأسئلة الشائعة' : 'Frequently asked questions' }}</h3>
+        <p class="faq-subtitle">{{ $i18n.locale === 'ar' ? 'كل ما تحتاج معرفته عن إدارة إضافاتك.' : 'A little help with managing your addons.' }}</p>
       </div>
     </div>
 
@@ -56,7 +56,7 @@ function toggleAccordion(idx) {
         class="accordion-item" 
         :class="{ 'open': activeIdx === index }"
       >
-        <button class="accordion-trigger" @click="toggleAccordion(index)">
+        <button class="accordion-trigger" :aria-expanded="activeIdx === index" @click="toggleAccordion(index)">
           <span class="question-text">
             {{ $i18n.locale === 'ar' ? item.qAr : item.qEn }}
           </span>
