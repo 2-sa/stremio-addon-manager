@@ -18,7 +18,6 @@ import './assets/studio.css'
         <h1>{{ $i18n.locale === 'ar' ? 'إضافاتك، بالترتيب الذي تحبّه.' : 'Your addons. Your order.' }}</h1>
         <p>{{ $i18n.locale === 'ar' ? 'رتّب مكتبتك وعدّل إضافاتك، ثم احفظ التغييرات في حساب Stremio.' : 'Arrange your library, edit your addons, then sync changes to Stremio.' }}</p>
       </div>
-      <span class="workspace-label"><span></span>{{ $i18n.locale === 'ar' ? 'مساحة إدارة الإضافات' : 'Addon workspace' }}</span>
     </header>
     <main class="workspace-grid">
       <Configuration />

@@ -41,8 +41,6 @@ body { background-image: none; }
 .eyebrow { display: block; font-size: .75rem; letter-spacing: .14em; font-weight: 600; color: var(--accent-1); margin: 0 0 .7rem; }
 .workspace-heading h1 { font-size: clamp(1.65rem,3vw,2.35rem); letter-spacing: -.045em; font-weight: 700; margin-bottom: .6rem; }
 .workspace-heading p:not(.eyebrow) { margin: 0; font-size: 1rem; }
-.workspace-label { font-size: .875rem; color: var(--text-secondary); display: flex; align-items: center; gap: .6rem; white-space: nowrap; }
-.workspace-label > span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-1); }
 .workspace-grid { display: grid; grid-template-columns: minmax(0,1fr) 290px; align-items: start; gap: 1.5rem; }
 .workspace-grid > * { min-width: 0; }
 .app-layout .configure-section { gap: 1rem; }
@@ -125,7 +123,6 @@ body { background-image: none; }
 @media (max-width: 1020px) {
   #app { padding: 0 1.5rem 1.5rem; }
   .workspace-grid { grid-template-columns: minmax(0,1fr) 255px; }
-  .workspace-label { display: none; }
   .app-layout .step-item { flex-direction: column; text-align: center; gap: .4rem; }
 }
 @media (max-width: 760px) {
