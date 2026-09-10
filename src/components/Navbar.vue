@@ -44,7 +44,6 @@ onMounted(() => {
         </svg>
       </div>
       <span class="brand-title">{{ $t('app.name') }}</span>
-      <span class="version-badge">v2.0 BETA</span>
     </div>
 
     <div class="nav-actions">

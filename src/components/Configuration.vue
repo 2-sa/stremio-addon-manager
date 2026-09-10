@@ -219,14 +219,14 @@ function saveManifestEdit(updatedManifest) {
         </div>
         <div>
           <h3>{{ $t('config.step0') }}</h3>
-          <p class="step-desc">قم بالاتصال بحساب Stremio للبدء في استعراض وإدارة ترتيب الإضافات المثبتة.</p>
+          <p class="step-desc">{{ $i18n.locale === 'ar' ? 'استخدم حساب Stremio لعرض إضافاتك.' : 'Connect your Stremio account to view your addons.' }}</p>
         </div>
       </div>
       <Authentication :stremioAPIBase="stremioAPIBase" @auth-key="setAuthKey" />
     </div>
 
     <!-- STEP 1: LOAD ADDONS -->
-    <div class="card" :class="{ 'locked-card': !stremioAuthKey }">
+    <div v-if="stremioAuthKey" class="card">
       <div class="step-card-header">
         <div class="header-icon step-1">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -244,7 +244,7 @@ function saveManifestEdit(updatedManifest) {
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
-        <span>يرجى إتمام الخطوة التمهيدية (تسجيل الدخول) أولاً لتفعيل جلب الإضافات.</span>
+        <span>سجّل الدخول أولًا لعرض إضافاتك.</span>
       </div>
 
       <!-- Action Area -->
@@ -264,7 +264,7 @@ function saveManifestEdit(updatedManifest) {
     </div>
 
     <!-- STEP 2: REORDER & FILTER -->
-    <div class="card" :class="{ 'locked-card': addons.length === 0 }">
+    <div v-if="stremioAuthKey" class="card" :class="{ 'locked-card': addons.length === 0 }">
       <div class="step-card-header justify-between">
         <div class="header-left-group">
           <div class="header-icon step-2">
@@ -274,7 +274,7 @@ function saveManifestEdit(updatedManifest) {
           </div>
           <div>
             <h3>{{ $t('config.step2') }}</h3>
-            <p class="step-desc">اسحب وأفلت المقابض لإعادة ترتيب ظهور الإضافات في الشاشة الرئيسية لـ Stremio.</p>
+            <p class="step-desc">{{ $i18n.locale === 'ar' ? 'اسحب الإضافات أو استخدم الأسهم لتغيير ترتيبها.' : 'Drag addons or use the arrows to change their order.' }}</p>
           </div>
         </div>
       </div>
@@ -287,7 +287,7 @@ function saveManifestEdit(updatedManifest) {
           </svg>
         </div>
         <h5>القائمة فارغة حالياً</h5>
-        <p>قم بالنقر على زر <strong>"استعرض إضافاتك الحالية"</strong> أعلاه لجلب وعرض القائمة هنا.</p>
+        <p>{{ $i18n.locale === 'ar' ? 'ستظهر إضافاتك هنا بعد جلبها.' : 'Your addons will appear here after loading.' }}</p>
       </div>
 
       <!-- Addons List with Toolbar -->
@@ -367,7 +367,7 @@ function saveManifestEdit(updatedManifest) {
     </div>
 
     <!-- STEP 3: SYNC TO STREMIO -->
-    <div class="card sync-card" :class="{ 'locked-card': addons.length === 0 }">
+    <div v-if="addons.length > 0" class="card sync-card">
       <div class="step-card-header">
         <div class="header-icon step-3">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -376,7 +376,7 @@ function saveManifestEdit(updatedManifest) {
         </div>
         <div>
           <h3>{{ $t('config.step3') }}</h3>
-          <p class="step-desc">بعد الانتهاء من الترتيب والتعديل، اضغط على زر المزامنة لحفظ الترتيب مباشرة في حساب Stremio.</p>
+          <p class="step-desc">{{ $i18n.locale === 'ar' ? 'لن تتغير إضافات حسابك حتى تضغط زر المزامنة.' : 'Your account stays unchanged until you sync.' }}</p>
         </div>
       </div>
 
