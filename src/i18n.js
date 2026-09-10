@@ -30,6 +30,7 @@ export const messages = {
       editManifest: "Edit manifest JSON"
     },
     config: {
+      movedTo: '{name} moved to position {position}',
       title: "Configuration",
       step1: "Step 1: Load",
       loading: "Loading...",
@@ -112,6 +113,7 @@ export const messages = {
     },
     config: {
       title: "الإعدادات",
+      movedTo: 'تم نقل {name} إلى الموضع {position}',
       step1: "الخطوة الأولى: جلب الإضافات",
       loading: "جارٍ التحميل...",
       loadAddons: "استعرض إضافاتك الحالية",

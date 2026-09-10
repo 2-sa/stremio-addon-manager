@@ -19,8 +19,8 @@ const faqItems = [
   {
     qAr: 'هل بيانات دخولي ومفتاح AuthKey آمنة عند استخدام هذا التطبيق؟',
     qEn: 'Are my login credentials and AuthKey secure when using this app?',
-    aAr: 'بالتأكيد 100%. هذه الأداة تعمل بالكامل داخل متصفحك (Client-side). يتم إرسال طلبات المصادقة والمزامنة مباشرة من متصفحك إلى خوادم Stremio الرسمية (api.strem.io) دون المرور بأي خوادم وسيطة أو تخزين خارجي.',
-    aEn: 'Absolutely 100%. This tool runs completely locally inside your browser (Client-side). Authentication and sync requests go directly from your browser to official Stremio API servers without intermediary servers.'
+    aAr: 'تُرسل طلبات تسجيل الدخول والمزامنة من متصفحك مباشرة إلى واجهة Stremio. هذه أداة غير رسمية ولا توفر ضمانًا أمنيًا. احتفظ بمفتاح AuthKey وكلمة المرور سرّيين.',
+    aEn: 'Authentication and sync requests go directly from your browser to the Stremio API. This unofficial tool does not provide a security guarantee. Keep your AuthKey and password private.'
   },
   {
     qAr: 'ماذا يعني زر "تعديل الـ Manifest" (أيقونة القلم) بجانب الإضافة؟',
@@ -50,10 +50,10 @@ function toggleAccordion(idx) {
     </div>
 
     <div class="accordion-list">
-      <div 
-        v-for="(item, index) in faqItems" 
-        :key="index" 
-        class="accordion-item" 
+      <div
+        v-for="(item, index) in faqItems"
+        :key="index"
+        class="accordion-item"
         :class="{ 'open': activeIdx === index }"
       >
         <button class="accordion-trigger" :aria-expanded="activeIdx === index" @click="toggleAccordion(index)">

@@ -5,6 +5,7 @@ import AddonItem from './AddonItem.vue'
 import Authentication from './Authentication.vue'
 import DynamicForm from './DynamicForm.vue'
 import { useI18n } from 'vue-i18n'
+import { moveAddon } from '../utils/addon-order.js'
 
 const stremioAPIBase = "https://api.strem.io/api/"
 const dragging = ref(false)
@@ -14,6 +15,7 @@ const isLoading = ref(false)
 const isSyncing = ref(false)
 const searchQuery = ref('')
 const syncSuccess = ref(false)
+const reorderAnnouncement = ref('')
 
 const { t } = useI18n()
 const loadAddonsButtonText = ref(t('config.loadAddons'))
@@ -125,6 +127,12 @@ function removeAddon(idx) {
   addons.value.splice(idx, 1)
 }
 
+function reorderAddon({ index, offset }) {
+  if (!moveAddon(addons.value, index, offset)) return
+  syncSuccess.value = false
+  reorderAnnouncement.value = t('config.movedTo', { name: addons.value[index + offset].manifest.name, position: index + offset + 1 })
+}
+
 function getNestedObjectProperty(obj, path, defaultValue = null) {
   try {
     return path.split('.').reduce((acc, part) => acc && acc[part], obj)
@@ -166,6 +174,7 @@ function saveManifestEdit(updatedManifest) {
 
 <template>
   <section id="configure" class="configure-section">
+    <span class="sr-only" role="status">{{ reorderAnnouncement }}</span>
     <!-- Stepper Progress Bar -->
     <div class="stepper-bar">
       <div class="step-item" :class="{ 'completed': stremioAuthKey, 'active': !stremioAuthKey }">
@@ -310,6 +319,10 @@ function saveManifestEdit(updatedManifest) {
           v-if="!searchQuery"
           :list="addons" 
           item-key="transportUrl" 
+          handle=".drag-handle"
+          :delay="150"
+          :delay-on-touch-only="true"
+          :touch-start-threshold="5"
           class="sortable-list" 
           ghost-class="ghost" 
           @start="dragging = true" 
@@ -319,6 +332,9 @@ function saveManifestEdit(updatedManifest) {
             <AddonItem
               :name="element.manifest.name"
               :idx="index"
+              :canMoveUp="index > 0"
+              :canMoveDown="index < addons.length - 1"
+              @move-addon="reorderAddon"
               :manifestURL="element.transportUrl"
               :logoURL="element.manifest.logo"
               :isDeletable="!getNestedObjectProperty(element, 'flags.protected', false)"
@@ -336,6 +352,9 @@ function saveManifestEdit(updatedManifest) {
             :key="element.transportUrl"
             :name="element.manifest.name"
             :idx="addons.indexOf(element)"
+            :canMoveUp="addons.indexOf(element) > 0"
+            :canMoveDown="addons.indexOf(element) < addons.length - 1"
+            @move-addon="reorderAddon"
             :manifestURL="element.transportUrl"
             :logoURL="element.manifest.logo"
             :isDeletable="!getNestedObjectProperty(element, 'flags.protected', false)"

@@ -4,13 +4,15 @@ import { ref } from 'vue'
 const props = defineProps({
   name: { type: String, required: true },
   idx: { type: Number, required: true },
+  canMoveUp: { type: Boolean, default: false },
+  canMoveDown: { type: Boolean, default: false },
   manifestURL: { type: String, required: true },
   logoURL: { type: String, required: false },
   isDeletable: { type: Boolean, required: false, default: true },
   isConfigurable: { type: Boolean, required: false, default: false }
 })
 
-const emits = defineEmits(['delete-addon', 'edit-manifest'])
+const emits = defineEmits(['delete-addon', 'edit-manifest', 'move-addon'])
 
 const defaultLogo = 'https://icongr.am/feather/box.svg?size=48&color=6366f1'
 const copied = ref(false)
@@ -80,6 +82,8 @@ function openEditManifestModal() {
 
     <!-- Action Buttons -->
     <div class="row-actions">
+      <button class="icon-only" type="button" :disabled="!canMoveUp" :aria-label="($i18n.locale === 'ar' ? 'تحريك لأعلى: ' : 'Move up: ') + name" :title="$i18n.locale === 'ar' ? 'تحريك لأعلى' : 'Move up'" @click="emits('move-addon', { index: idx, offset: -1 })">↑</button>
+      <button class="icon-only" type="button" :disabled="!canMoveDown" :aria-label="($i18n.locale === 'ar' ? 'تحريك لأسفل: ' : 'Move down: ') + name" :title="$i18n.locale === 'ar' ? 'تحريك لأسفل' : 'Move down'" @click="emits('move-addon', { index: idx, offset: 1 })">↓</button>
       <!-- Configure -->
       <button 
         class="icon-only" 

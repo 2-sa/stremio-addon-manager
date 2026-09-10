@@ -21,6 +21,12 @@ body.dark {
   --shadow-lg: 0 10px 32px #0002;
 }
 body { background-image: none; }
+.site-about { max-width: 1184px; margin: 0 auto 2rem; padding: 1.5rem; border-top: 1px solid var(--card-border); color: var(--text-secondary); font-size: 1rem; }
+.site-about h2 { font-size: 1.2rem; }
+.site-about details { margin: 1rem 0; }
+.site-about summary { cursor: pointer; font-weight: 600; color: var(--text-primary); }
+.site-about details p { margin-top: .75rem; }
+.about-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; font-size: .875rem; }
 #app { max-width: 1280px; padding: 0 3rem 1.5rem; }
 .app-layout { display: flex; flex-direction: column; gap: 0; }
 .app-layout .navbar { min-height: 88px; border: 0; border-bottom: 1px solid var(--card-border); border-radius: 0; background: transparent; padding: 1rem 0; box-shadow: none; }
@@ -91,6 +97,23 @@ body { background-image: none; }
 .app-layout .heart-pulse,.app-layout .sun-icon,.app-layout .moon-icon { animation: none; }
 .app-layout .badge { font-size: .75rem; }
 .app-layout .addon-row { border-radius: 9px; box-shadow: none; }
+.app-layout .row-actions { flex-wrap: wrap; }
+.app-layout .row-left { max-width: 100%; }
+.app-layout .icon-only { width: 44px; height: 44px; }
+.app-layout .drag-handle { min-width: 32px; min-height: 44px; touch-action: none; }
+.app-layout .modal-content { max-height: 88dvh; overscroll-behavior: contain; }
+.app-layout .modal-header,.app-layout .form-actions { flex-wrap: wrap; }
+.app-layout .catalog-input-group { min-width: 0; }
+.app-layout .sync-btn { white-space: normal; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (max-width: 1100px) {
+  .app-layout .addon-row { flex-direction: column; align-items: stretch; }
+  .app-layout .row-actions { justify-content: flex-end; }
+}
+@media (pointer: coarse) {
+  .app-layout .lang-btn,.app-layout .theme-btn,.app-layout .share-button { min-height: 44px; }
+  .app-layout .addon-row:hover { transform: none; }
+}
 .app-layout .manager-toolbar { flex-wrap: wrap; }
 .app-layout .search-box { min-width: 0; max-width: 100%; }
 .skip-link { position: absolute; top: -100px; padding: .7rem 1rem; background: var(--card-bg); z-index: 100; }
@@ -118,4 +141,3 @@ body { background-image: none; }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
-
